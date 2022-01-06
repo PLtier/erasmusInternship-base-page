@@ -1,15 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { GatsbyImage } from "gatsby-plugin-image";
+//import { GatsbyImage } from "gatsby-plugin-image";
+import Gallery from "./Gallery";
 
 export default function FullWidthImage(props) {
-  const {
-    height = 400,
-    img,
-    title,
-    subheading,
-    imgPosition = "top left",
-  } = props;
+  const { title, subheading } = props;
 
   return (
     <React.Fragment>
@@ -20,7 +15,14 @@ export default function FullWidthImage(props) {
           alignItems: "center",
         }}
       >
-        {img?.url ? (
+        <div
+          style={{
+            gridArea: "1/1",
+          }}
+        >
+          <Gallery />
+        </div>
+        {/*img?.url ? (
           <img
             src={img}
             objectFit={"cover"}
@@ -54,7 +56,7 @@ export default function FullWidthImage(props) {
             alt=""
             formats={["auto", "webp", "avif"]}
           />
-        )}
+          )*/}
         {(title || subheading) && (
           <div
             style={{
