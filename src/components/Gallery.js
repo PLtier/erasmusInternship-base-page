@@ -18,7 +18,7 @@ class MyGallery extends React.Component {
   upload() {
     let imagesCopy = [];
     this.props.images.forEach((image) => {
-      if (!!image == false) return;
+      if (!!image === false) return;
       let picture;
 
       !image.publicURL ? (picture = image) : (picture = image.publicURL);
