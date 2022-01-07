@@ -12,9 +12,6 @@ description: Lorem Ipsum is simply dummy text of the printing and typesetting
   PageMaker including versions of Lorem Ipsum.
 featuredpost: true
 featuredimage: /img/products-grid3.jpg
-tags:
-  - lol
-  - ddd
 ---
 ![Kawusia](/img/products-grid3.jpg "Kawusia")
 
