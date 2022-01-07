@@ -5,7 +5,8 @@ import { Helmet } from "react-helmet";
 import { graphql, Link } from "gatsby";
 import Layout from "../components/Layout";
 import Content, { HTMLContent } from "../components/Content";
-
+import BlogFullWidthImage from "../components/BlogFullWidthImage";
+import { getImage } from "gatsby-plugin-image";
 // eslint-disable-next-line
 export const BlogPostTemplate = ({
   content,
@@ -14,8 +15,10 @@ export const BlogPostTemplate = ({
   tags,
   title,
   helmet,
+  image,
 }) => {
   const PostContent = contentComponent || Content;
+  const heroImage = getImage(image) || image;
 
   return (
     <section className="section">
@@ -23,6 +26,7 @@ export const BlogPostTemplate = ({
       <div className="container content">
         <div className="columns">
           <div className="column is-10 is-offset-1">
+            <BlogFullWidthImage img={heroImage} />
             <h1 className="title is-size-2 has-text-weight-bold is-bold-light">
               {title}
             </h1>
@@ -53,6 +57,7 @@ BlogPostTemplate.propTypes = {
   description: PropTypes.string,
   title: PropTypes.string,
   helmet: PropTypes.object,
+  image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
 
 const BlogPost = ({ data }) => {
@@ -61,6 +66,7 @@ const BlogPost = ({ data }) => {
   return (
     <Layout>
       <BlogPostTemplate
+        image={post.frontmatter.featuredimage}
         content={post.html}
         contentComponent={HTMLContent}
         description={post.frontmatter.description}
@@ -98,6 +104,11 @@ export const pageQuery = graphql`
         title
         description
         tags
+        featuredimage {
+          childImageSharp {
+            gatsbyImageData(quality: 100, layout: FULL_WIDTH)
+          }
+        }
       }
     }
   }

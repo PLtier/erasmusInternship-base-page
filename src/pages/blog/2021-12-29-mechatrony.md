@@ -9,5 +9,3 @@ featuredimage: /img/chemex.jpg
 # XD
 
 i xdddddd beczunia
-
-![xddddddddddddd](/img/products-grid2.jpg "dddddddd")
