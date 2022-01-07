@@ -13,6 +13,4 @@ description: Lorem Ipsum is simply dummy text of the printing and typesetting
 featuredpost: true
 featuredimage: /img/products-grid3.jpg
 ---
-![Kawusia](/img/products-grid3.jpg "Kawusia")
-
-Witajcie w naszej bajce.
+Hej
