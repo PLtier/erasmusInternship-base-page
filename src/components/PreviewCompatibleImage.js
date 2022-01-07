@@ -23,11 +23,11 @@ const PreviewCompatibleImage = ({ imageInfo }) => {
         alt={alt}
       />
     );
-    // for Netlify CMS 
+    // for Netlify CMS
   } else if (image) {
-    return <img style={{imageStyle}} src={image} alt={alt} />;
+    return <img style={{ imageStyle }} src={image} alt={alt} />;
   } else {
-    return null
+    return null;
   }
 };
 
@@ -35,7 +35,7 @@ PreviewCompatibleImage.propTypes = {
   imageInfo: PropTypes.shape({
     alt: PropTypes.string,
     childImageSharp: PropTypes.object,
-    image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
+    image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]), //.isRequired,
     style: PropTypes.object,
   }).isRequired,
 };

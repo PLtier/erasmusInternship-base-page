@@ -47,9 +47,18 @@ collections:
               default: "index-page",
             }
           - { label: Title, name: title, widget: string }
-          - { label: Image, name: image, widget: image }
-          - { label: Heading, name: heading, widget: string }
           - { label: Subheading, name: subheading, widget: string }
+          - {
+              label: Images,
+              name: images,
+              widget: list,
+              summary: "{{fields.image}}",
+              add_to_top: true,
+              min: 3,
+              max: 10,
+              field: { label: Image, name: image, widget: image },
+            }
+          - { label: Heading, name: heading, widget: string }
           - {
               label: Mainpitch,
               name: mainpitch,

@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { graphql } from "gatsby";
 import { getImage } from "gatsby-plugin-image";
+import PreviewCompatibleImage from "../components/PreviewCompatibleImage";
 
 import Layout from "../components/Layout";
 import Features from "../components/Features";
@@ -10,19 +11,19 @@ import FullWidthImage from "../components/FullWidthImage";
 
 // eslint-disable-next-line
 export const IndexPageTemplate = ({
-  image,
   title,
+  images,
   heading,
   subheading,
   mainpitch,
   description,
   intro,
 }) => {
-  const heroImage = getImage(image) || image;
-
+  //const heroImage = getImage(image) || image;
+  //console.log(images);
   return (
     <div>
-      <FullWidthImage img={heroImage} title={title} subheading={subheading} />
+      <FullWidthImage title={title} subheading={subheading} images={images} />
       <section className="section section--gradient">
         <div className="container">
           <div className="section">
@@ -51,8 +52,18 @@ export const IndexPageTemplate = ({
                   </div>
                   <div className="column is-12">
                     <h3 className="has-text-weight-semibold is-size-2">
+                      <div>
+                        {/* {images.map((image) => (
+                          <div key={image.id}>
+                            {/*  <PreviewCompatibleImage
+                              imageInfo={image}
+                          ></PreviewCompatibleImage> 
+                          </div>
+                            ))} */}
+                      </div>
                       Latest stories
                     </h3>
+                    <div></div>
                     <BlogRoll />
                     <div className="column is-12 has-text-centered"></div>
                   </div>
@@ -67,12 +78,12 @@ export const IndexPageTemplate = ({
 };
 
 IndexPageTemplate.propTypes = {
-  image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   title: PropTypes.string,
   heading: PropTypes.string,
   subheading: PropTypes.string,
   mainpitch: PropTypes.object,
   description: PropTypes.string,
+  images: PropTypes.arrayOf(PropTypes.object),
   intro: PropTypes.shape({
     blurbs: PropTypes.array,
   }),
@@ -84,7 +95,7 @@ const IndexPage = ({ data }) => {
   return (
     <Layout>
       <IndexPageTemplate
-        image={frontmatter.image}
+        images={frontmatter.images}
         title={frontmatter.title}
         heading={frontmatter.heading}
         subheading={frontmatter.subheading}
@@ -111,10 +122,12 @@ export const pageQuery = graphql`
     markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
       frontmatter {
         title
-        image {
-          childImageSharp {
-            gatsbyImageData(quality: 100, layout: FULL_WIDTH)
-          }
+        images {
+          #id
+          publicURL
+          # childImageSharp {
+          #   gatsbyImageData(width: 240, quality: 64, layout: CONSTRAINED)
+          # }
         }
         heading
         subheading
